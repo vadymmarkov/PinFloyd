@@ -14,7 +14,7 @@ open class ClusterAnnotationView: MKAnnotationView {
     label.textAlignment = .center
     label.numberOfLines = 1
     label.adjustsFontSizeToFitWidth = true
-    label.minimumScaleFactor = 2
+    label.minimumScaleFactor = 0.5
 
     return label
   }()
@@ -42,13 +42,13 @@ open class ClusterAnnotationView: MKAnnotationView {
   open override func layoutSubviews() {
     super.layoutSubviews()
     textLabel.frame = bounds
-    layer.borderWidth = 3
     layer.cornerRadius = bounds.size.height / 2
   }
 
   // MARK: - Setup
 
   private func setup() {
+    layer.borderWidth = 3
     layer.borderColor = UIColor.white.withAlphaComponent(0.8).cgColor
     addSubview(textLabel)
   }
