@@ -2,7 +2,7 @@ import XCTest
 import MapKit
 @testable import PinFloyd
 
-class MKMapPointTests: XCTestCase {
+class MapPointTests: XCTestCase {
 
   var mapPoint: MKMapPoint!
 

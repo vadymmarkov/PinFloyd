@@ -2,7 +2,7 @@ import XCTest
 import MapKit
 @testable import PinFloyd
 
-class MKMapSizeTests: XCTestCase {
+class MapSizeTests: XCTestCase {
 
   var mapSize: MKMapSize!
 
