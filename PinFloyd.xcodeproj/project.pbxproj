@@ -15,6 +15,7 @@
 		D5EEF1AE1E9307070081F824 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */; };
 		D5EEF1B01E93082F0081F824 /* ClusterAnnotationViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1AF1E93082F0081F824 /* ClusterAnnotationViewTests.swift */; };
 		D5EEF1B21E930DDB0081F824 /* MKGeometry+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B11E930DDB0081F824 /* MKGeometry+PinFloyd.swift */; };
+		D5EEF1B41E930EB60081F824 /* MKMapPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B31E930EB60081F824 /* MKMapPointTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		D5EEF1AF1E93082F0081F824 /* ClusterAnnotationViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationViewTests.swift; sourceTree = "<group>"; };
 		D5EEF1B11E930DDB0081F824 /* MKGeometry+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKGeometry+PinFloyd.swift"; sourceTree = "<group>"; };
+		D5EEF1B31E930EB60081F824 /* MKMapPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapPointTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 				D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */,
 				D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */,
 				D5EEF1AF1E93082F0081F824 /* ClusterAnnotationViewTests.swift */,
+				D5EEF1B31E930EB60081F824 /* MKMapPointTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -240,6 +243,7 @@
 				D5CE51EC1E92FF8D00744180 /* ClusterPinTests.swift in Sources */,
 				D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */,
 				D5EEF1B01E93082F0081F824 /* ClusterAnnotationViewTests.swift in Sources */,
+				D5EEF1B41E930EB60081F824 /* MKMapPointTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
