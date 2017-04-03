@@ -12,6 +12,7 @@
 		D5CE51EC1E92FF8D00744180 /* ClusterPinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */; };
 		D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */; };
 		D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */; };
+		D5EEF1AE1E9307070081F824 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +34,7 @@
 		D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterPinTests.swift; sourceTree = "<group>"; };
 		D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotation.swift; sourceTree = "<group>"; };
 		D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationTests.swift; sourceTree = "<group>"; };
+		D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		D5C629691C3A809D007F7B7C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */,
 				D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */,
 				D5CE51E61E92FCEC00744180 /* ClusterPin.swift */,
 			);
@@ -218,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5CE51E71E92FCEC00744180 /* ClusterPin.swift in Sources */,
+				D5EEF1AE1E9307070081F824 /* ClusterAnnotationView.swift in Sources */,
 				D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
