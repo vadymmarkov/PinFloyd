@@ -10,6 +10,8 @@
 		D5B2E8AA1C3A780C00C0327D /* PinFloyd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5B2E89F1C3A780C00C0327D /* PinFloyd.framework */; };
 		D5CE51E71E92FCEC00744180 /* ClusterPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE51E61E92FCEC00744180 /* ClusterPin.swift */; };
 		D5CE51EC1E92FF8D00744180 /* ClusterPinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */; };
+		D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */; };
+		D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		D5C629901C3A8BDA007F7B7C /* Info-iOS.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-iOS.plist"; sourceTree = "<group>"; };
 		D5CE51E61E92FCEC00744180 /* ClusterPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterPin.swift; sourceTree = "<group>"; };
 		D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterPinTests.swift; sourceTree = "<group>"; };
+		D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotation.swift; sourceTree = "<group>"; };
+		D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +84,7 @@
 		D5C629691C3A809D007F7B7C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */,
 				D5CE51E61E92FCEC00744180 /* ClusterPin.swift */,
 			);
 			path = Sources;
@@ -98,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D5CE51EA1E92FF8800744180 /* ClusterPinTests.swift */,
+				D5EEF1AB1E9305E30081F824 /* ClusterAnnotationTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -212,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5CE51E71E92FCEC00744180 /* ClusterPin.swift in Sources */,
+				D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5CE51EC1E92FF8D00744180 /* ClusterPinTests.swift in Sources */,
+				D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
