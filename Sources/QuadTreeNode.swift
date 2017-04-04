@@ -20,7 +20,7 @@ final class QuadTreeNode {
 
   @discardableResult
   func add(annotation: MKAnnotation) -> Bool {
-    if !rect.contains(annotation: annotation) {
+    guard rect.contains(annotation: annotation) else {
       return false
     }
 
@@ -44,16 +44,15 @@ final class QuadTreeNode {
   }
 
   func annotations(inRect rect: MKMapRect) -> [MKAnnotation] {
-    if !self.rect.intersects(rect: rect) {
+    guard self.rect.intersects(rect: rect) else {
       return []
     }
 
     var result: [MKAnnotation] = []
+    let filteredAnnotations = annotations.filter({ rect.contains(annotation: $0) })
 
-    for annotation in annotations {
-      if rect.contains(annotation: annotation) {
-        result.append(annotation)
-      }
+    for annotation in filteredAnnotations {
+      result.append(annotation)
     }
 
     for child in children {
@@ -70,7 +69,7 @@ final class QuadTreeNode {
       child.removeAll()
     }
 
-    self.children.removeAll()
+    children.removeAll()
   }
 
   private func createChildren() -> [QuadTreeNode] {
