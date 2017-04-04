@@ -23,6 +23,7 @@
 		D5EEF1C41E939CC90081F824 /* MKGeometry+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C21E939CC90081F824 /* MKGeometry+PinFloyd.swift */; };
 		D5EEF1C51E939CC90081F824 /* MKMapView+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C31E939CC90081F824 /* MKMapView+PinFloyd.swift */; };
 		D5EEF1C71E939D1F0081F824 /* MKMapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C61E939D1F0081F824 /* MKMapViewTests.swift */; };
+		D5EEF1C91E93A0DD0081F824 /* ClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		D5EEF1C21E939CC90081F824 /* MKGeometry+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKGeometry+PinFloyd.swift"; sourceTree = "<group>"; };
 		D5EEF1C31E939CC90081F824 /* MKMapView+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+PinFloyd.swift"; sourceTree = "<group>"; };
 		D5EEF1C61E939D1F0081F824 /* MKMapViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewTests.swift; sourceTree = "<group>"; };
+		D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusteringManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 			children = (
 				D5EEF1C11E939CB40081F824 /* Extensions */,
 				D5EEF1BB1E931F500081F824 /* QuadTreeNode.swift */,
+				D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */,
 				D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */,
 				D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */,
 				D5CE51E61E92FCEC00744180 /* ClusterPin.swift */,
@@ -261,6 +264,7 @@
 				D5EEF1C51E939CC90081F824 /* MKMapView+PinFloyd.swift in Sources */,
 				D5CE51E71E92FCEC00744180 /* ClusterPin.swift in Sources */,
 				D5EEF1AE1E9307070081F824 /* ClusterAnnotationView.swift in Sources */,
+				D5EEF1C91E93A0DD0081F824 /* ClusteringManager.swift in Sources */,
 				D5EEF1C41E939CC90081F824 /* MKGeometry+PinFloyd.swift in Sources */,
 				D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */,
 				D5EEF1BC1E931F500081F824 /* QuadTreeNode.swift in Sources */,
