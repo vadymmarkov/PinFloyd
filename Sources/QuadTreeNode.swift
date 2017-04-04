@@ -69,7 +69,7 @@ final class QuadTreeNode {
       child.removeAll()
     }
 
-    self.children.removeAll()
+    children.removeAll()
   }
 
   private func createChildren() -> [QuadTreeNode] {
