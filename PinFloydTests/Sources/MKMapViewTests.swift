@@ -54,8 +54,8 @@ class MKMapViewTests: XCTestCase {
     XCTAssertEqual(mapView.tileSize, 88)
   }
 
-  func testTileBoundingBox() {
-    let boundingBox = mapView.tileBoundingBox
+  func testTile() {
+    let boundingBox = mapView.tile
 
     XCTAssertEqual(boundingBox.minX, Int(floor(mapView.visibleMapRect.minX * mapView.scaleFactor)))
     XCTAssertEqual(boundingBox.maxX, Int(floor(mapView.visibleMapRect.maxX * mapView.scaleFactor)))
