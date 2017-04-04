@@ -3,9 +3,11 @@ import MapKit
 
 public final class ClusteringManager {
 
+  public typealias Completion = (MKMapView) -> Void
+
   private let rootNode: QuadTreeNode = QuadTreeNode(rect: MKMapRectWorld, capacity: 8)
 
-  init(annotations: [MKAnnotation] = []) {
+  public init(annotations: [MKAnnotation] = []) {
     add(annotations: annotations)
   }
 
@@ -24,14 +26,14 @@ public final class ClusteringManager {
     rootNode.removeAll()
   }
 
-  public func renderAnnotations(onMapView mapView: MKMapView) {
+  public func renderAnnotations(onMapView mapView: MKMapView, completion: Completion? = nil) {
     DispatchQueue.global(qos: .userInitiated).async { [weak self] in
       guard let strongSelf = self else {
         return
       }
 
       let annotations = strongSelf.clusteredAnnotations(onMapView: mapView)
-      strongSelf.reload(annotations: annotations, onMapView: mapView)
+      strongSelf.reload(annotations: annotations, onMapView: mapView, completion: completion)
     }
   }
 
@@ -87,7 +89,7 @@ public final class ClusteringManager {
     return clusteredAnnotations
   }
 
-  private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView) {
+  private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView, completion: Completion?) {
     let currentSet = NSMutableSet(array: mapView.annotations)
     let newSet = NSSet(array: annotations) as Set<NSObject>
 
@@ -115,6 +117,8 @@ public final class ClusteringManager {
       if let removeAnnotations = setToRemove.allObjects as? [MKAnnotation] {
         mapView.removeAnnotations(removeAnnotations)
       }
+
+      completion?(mapView)
     }
   }
 }

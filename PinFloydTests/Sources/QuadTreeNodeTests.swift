@@ -2,21 +2,6 @@ import XCTest
 import MapKit
 @testable import PinFloyd
 
-// MARK: - Mocks
-
-private class Annotation: NSObject, MKAnnotation {
-
-  let coordinate: CLLocationCoordinate2D
-  var title: String?
-  var subtitle: String?
-
-  init(coordinate: CLLocationCoordinate2D) {
-    self.coordinate = coordinate
-  }
-}
-
-// MARK: - Test case
-
 class QuadTreeNodeTests: XCTestCase {
 
   var node: QuadTreeNode!
@@ -36,42 +21,42 @@ class QuadTreeNodeTests: XCTestCase {
 
     // Rect does not containt a point
     XCTAssertFalse(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 142238217, y: 78053902.0).coordinate))
+      annotation: Annotation(mapPoint: MKMapPoint(x: 142238217, y: 78053902.0)))
     )
     XCTAssertTrue(node.isLeaf)
     XCTAssertTrue(node.annotations(inRect: mapRect).isEmpty)
 
     // 1. Rect containts a point
     XCTAssertTrue(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 141674269, y: 79422844.3).coordinate)
+      annotation: Annotation(mapPoint: MKMapPoint(x: 141674269, y: 79422844.3))
     ))
     XCTAssertTrue(node.isLeaf)
     XCTAssertEqual(node.annotations(inRect: mapRect).count, 1)
 
     // 2. Rect containts a point
     XCTAssertTrue(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 141674270, y: 79422844.3).coordinate)
+      annotation: Annotation(mapPoint: MKMapPoint(x: 141674270, y: 79422844.3))
     ))
     XCTAssertTrue(node.isLeaf)
     XCTAssertEqual(node.annotations(inRect: mapRect).count, 2)
 
     // 3. Rect containts a point
     XCTAssertTrue(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 141674480, y: 79422954.3).coordinate)
+      annotation: Annotation(mapPoint: MKMapPoint(x: 141674480, y: 79422954.3))
     ))
     XCTAssertTrue(node.isLeaf)
     XCTAssertEqual(node.annotations(inRect: mapRect).count, 3)
 
     // 4. Rect containts a point, node should be subdivided
     XCTAssertTrue(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 141674380, y: 79422954.3).coordinate)
+      annotation: Annotation(mapPoint: MKMapPoint(x: 141674380, y: 79422954.3))
     ))
     XCTAssertTrue(!node.isLeaf)
     XCTAssertEqual(node.annotations(inRect: mapRect).count, 4)
 
     // 5. Rect containts a point
     XCTAssertTrue(node.add(
-      annotation: Annotation(coordinate: MKMapPoint(x: 141674280, y: 79422854.3).coordinate)
+      annotation: Annotation(mapPoint: MKMapPoint(x: 141674280, y: 79422854.3))
     ))
     XCTAssertTrue(!node.isLeaf)
     XCTAssertEqual(node.annotations(inRect: mapRect).count, 5)
