@@ -23,6 +23,9 @@
 		D5EEF1C41E939CC90081F824 /* MKGeometry+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C21E939CC90081F824 /* MKGeometry+PinFloyd.swift */; };
 		D5EEF1C51E939CC90081F824 /* MKMapView+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C31E939CC90081F824 /* MKMapView+PinFloyd.swift */; };
 		D5EEF1C71E939D1F0081F824 /* MKMapViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C61E939D1F0081F824 /* MKMapViewTests.swift */; };
+		D5EEF1C91E93A0DD0081F824 /* ClusteringManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */; };
+		D5EEF1CB1E93A2330081F824 /* ClusteringManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1CA1E93A2330081F824 /* ClusteringManagerTests.swift */; };
+		D5EEF1CE1E93A2F30081F824 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1CD1E93A2F30081F824 /* Annotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		D5EEF1C21E939CC90081F824 /* MKGeometry+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKGeometry+PinFloyd.swift"; sourceTree = "<group>"; };
 		D5EEF1C31E939CC90081F824 /* MKMapView+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKMapView+PinFloyd.swift"; sourceTree = "<group>"; };
 		D5EEF1C61E939D1F0081F824 /* MKMapViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKMapViewTests.swift; sourceTree = "<group>"; };
+		D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusteringManager.swift; sourceTree = "<group>"; };
+		D5EEF1CA1E93A2330081F824 /* ClusteringManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClusteringManagerTests.swift; sourceTree = "<group>"; };
+		D5EEF1CD1E93A2F30081F824 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,7 @@
 			children = (
 				D5EEF1C11E939CB40081F824 /* Extensions */,
 				D5EEF1BB1E931F500081F824 /* QuadTreeNode.swift */,
+				D5EEF1C81E93A0DD0081F824 /* ClusteringManager.swift */,
 				D5EEF1AD1E9307070081F824 /* ClusterAnnotationView.swift */,
 				D5EEF1A91E9305C50081F824 /* ClusterAnnotation.swift */,
 				D5CE51E61E92FCEC00744180 /* ClusterPin.swift */,
@@ -118,6 +125,7 @@
 		D5C6298F1C3A8BDA007F7B7C /* PinFloydTests */ = {
 			isa = PBXGroup;
 			children = (
+				D5EEF1CC1E93A2E00081F824 /* Helpers */,
 				D5CE51E91E92FF8800744180 /* Sources */,
 				D5C629901C3A8BDA007F7B7C /* Info-iOS.plist */,
 			);
@@ -136,6 +144,7 @@
 				D5EEF1B91E931DFD0081F824 /* MKAnnotationTests.swift */,
 				D5EEF1BD1E9389760081F824 /* QuadTreeNodeTests.swift */,
 				D5EEF1C61E939D1F0081F824 /* MKMapViewTests.swift */,
+				D5EEF1CA1E93A2330081F824 /* ClusteringManagerTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -147,6 +156,14 @@
 				D5EEF1C31E939CC90081F824 /* MKMapView+PinFloyd.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		D5EEF1CC1E93A2E00081F824 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D5EEF1CD1E93A2F30081F824 /* Annotation.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +278,7 @@
 				D5EEF1C51E939CC90081F824 /* MKMapView+PinFloyd.swift in Sources */,
 				D5CE51E71E92FCEC00744180 /* ClusterPin.swift in Sources */,
 				D5EEF1AE1E9307070081F824 /* ClusterAnnotationView.swift in Sources */,
+				D5EEF1C91E93A0DD0081F824 /* ClusteringManager.swift in Sources */,
 				D5EEF1C41E939CC90081F824 /* MKGeometry+PinFloyd.swift in Sources */,
 				D5EEF1AA1E9305C50081F824 /* ClusterAnnotation.swift in Sources */,
 				D5EEF1BC1E931F500081F824 /* QuadTreeNode.swift in Sources */,
@@ -272,12 +290,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5EEF1BA1E931DFD0081F824 /* MKAnnotationTests.swift in Sources */,
+				D5EEF1CB1E93A2330081F824 /* ClusteringManagerTests.swift in Sources */,
 				D5CE51EC1E92FF8D00744180 /* ClusterPinTests.swift in Sources */,
 				D5EEF1B61E930F6E0081F824 /* MKMapSizeTests.swift in Sources */,
 				D5EEF1C71E939D1F0081F824 /* MKMapViewTests.swift in Sources */,
 				D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */,
 				D5EEF1B01E93082F0081F824 /* ClusterAnnotationViewTests.swift in Sources */,
 				D5EEF1B81E93107B0081F824 /* MKMapRectTests.swift in Sources */,
+				D5EEF1CE1E93A2F30081F824 /* Annotation.swift in Sources */,
 				D5EEF1BE1E9389760081F824 /* QuadTreeNodeTests.swift in Sources */,
 				D5EEF1B41E930EB60081F824 /* MKMapPointTests.swift in Sources */,
 			);
