@@ -101,3 +101,12 @@ extension MKAnnotation {
     return MKMapPointForCoordinate(coordinate)
   }
 }
+
+// MARK: - CLLocationCoordinate2D
+
+extension CLLocationCoordinate2D: Equatable {}
+
+public func ==(lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+  return fabs(lhs.latitude - rhs.latitude) <= .ulpOfOne
+    && fabs(lhs.longitude - rhs.longitude) <= .ulpOfOne
+}

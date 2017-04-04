@@ -39,7 +39,7 @@ public final class ClusteringManager {
     }
   }
 
-  func clusterAnnotationView(for annotation: MKAnnotation, mapView: MKMapView) -> MKAnnotationView? {
+  public func clusterAnnotationView(for annotation: MKAnnotation, mapView: MKMapView) -> MKAnnotationView? {
     guard let annotation = annotation as? ClusterAnnotation else {
       return nil
     }
@@ -58,11 +58,30 @@ public final class ClusteringManager {
     return clusterView
   }
 
+  private func clusterAnnotation(for coordinate: CLLocationCoordinate2D,
+                                 annotationsCount: Int,
+                                 visibleAnnotations: [MKAnnotation]) -> MKAnnotation {
+    let filter: (MKAnnotation) -> Bool = { annotation in
+      guard let annotation = annotation as? ClusterAnnotation else {
+        return false
+      }
+      return annotation.annotationsCount == annotationsCount && annotation.coordinate == coordinate
+    }
+
+    guard let clusterAnnotation = visibleAnnotations.first(where: filter) else {
+      return ClusterAnnotation(coordinate: coordinate, annotationsCount: annotationsCount)
+    }
+
+    return clusterAnnotation
+  }
+
+
   // MARK: - Clustering
 
   private func clusteredAnnotations(onMapView mapView: MKMapView) -> [MKAnnotation] {
     let tile = mapView.tile
     let scaleFactor = mapView.scaleFactor
+    let visibleAnnotations = mapView.annotations
     var clusteredAnnotations = [MKAnnotation]()
 
     // Iterate through the bounding box points
@@ -97,12 +116,10 @@ public final class ClusteringManager {
           clusterMapPoint.x /= Double(count)
           clusterMapPoint.y /= Double(count)
 
-          let clusterAnnotation = ClusterAnnotation(
-            coordinate: clusterMapPoint.coordinate,
-            annotationsCount: annotations.count
-          )
-
-          clusteredAnnotations.append(clusterAnnotation)
+          clusteredAnnotations.append(clusterAnnotation(
+            for: clusterMapPoint.coordinate,
+            annotationsCount: annotations.count, visibleAnnotations: visibleAnnotations
+          ))
         }
       }
     }
