@@ -17,6 +17,7 @@
 		D5EEF1B21E930DDB0081F824 /* MKGeometry+PinFloyd.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B11E930DDB0081F824 /* MKGeometry+PinFloyd.swift */; };
 		D5EEF1B41E930EB60081F824 /* MapPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B31E930EB60081F824 /* MapPointTests.swift */; };
 		D5EEF1B61E930F6E0081F824 /* MapSizeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B51E930F6E0081F824 /* MapSizeTests.swift */; };
+		D5EEF1B81E93107B0081F824 /* MapRectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EEF1B71E93107B0081F824 /* MapRectTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		D5EEF1B11E930DDB0081F824 /* MKGeometry+PinFloyd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MKGeometry+PinFloyd.swift"; sourceTree = "<group>"; };
 		D5EEF1B31E930EB60081F824 /* MapPointTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapPointTests.swift; sourceTree = "<group>"; };
 		D5EEF1B51E930F6E0081F824 /* MapSizeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapSizeTests.swift; sourceTree = "<group>"; };
+		D5EEF1B71E93107B0081F824 /* MapRectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapRectTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				D5EEF1AF1E93082F0081F824 /* ClusterAnnotationViewTests.swift */,
 				D5EEF1B31E930EB60081F824 /* MapPointTests.swift */,
 				D5EEF1B51E930F6E0081F824 /* MapSizeTests.swift */,
+				D5EEF1B71E93107B0081F824 /* MapRectTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				D5EEF1B61E930F6E0081F824 /* MapSizeTests.swift in Sources */,
 				D5EEF1AC1E9305E30081F824 /* ClusterAnnotationTests.swift in Sources */,
 				D5EEF1B01E93082F0081F824 /* ClusterAnnotationViewTests.swift in Sources */,
+				D5EEF1B81E93107B0081F824 /* MapRectTests.swift in Sources */,
 				D5EEF1B41E930EB60081F824 /* MapPointTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

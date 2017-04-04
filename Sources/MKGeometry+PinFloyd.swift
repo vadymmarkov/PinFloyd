@@ -29,33 +29,16 @@ extension MKMapRect {
     return origin.x
   }
 
-  var minY: Double {
-    return origin.y
-  }
-
   var maxX: Double {
     return origin.x + size.width
   }
 
+  var minY: Double {
+    return origin.y
+  }
+
   var maxY: Double {
     return origin.y + size.height
-  }
-
-  func contains(x: Double) -> Bool {
-    return minX <= x && x <= maxX
-  }
-
-  func contains(y: Double) -> Bool {
-    return minY <= y && y <= maxY
-  }
-
-  func contains(point: MKMapPoint) -> Bool {
-    return contains(x: point.x) && contains(y: point.y)
-  }
-
-  func contains(annotation: MKAnnotation) -> Bool {
-    let point = annotation.mapPoint
-    return contains(point: point)
   }
 
   var northWestRect: MKMapRect {
@@ -81,6 +64,23 @@ extension MKMapRect {
       origin: MKMapPoint(x: origin.x + size.halfSize.width, y: origin.y + size.halfSize.height),
       size: size.halfSize
     )
+  }
+
+  private func contains(x: Double) -> Bool {
+    return minX <= x && x <= maxX
+  }
+
+  private func contains(y: Double) -> Bool {
+    return minY <= y && y <= maxY
+  }
+
+  private func contains(point: MKMapPoint) -> Bool {
+    return contains(x: point.x) && contains(y: point.y)
+  }
+
+  func contains(annotation: MKAnnotation) -> Bool {
+    let point = annotation.mapPoint
+    return contains(point: point)
   }
 
   func intersects(rect: MKMapRect) -> Bool {
