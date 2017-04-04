@@ -2,7 +2,7 @@ import MapKit
 
 // MARK: - Tile bounding box
 
-struct MapTileBoundingBox {
+struct MapTile {
   let minX: Int
   let maxX: Int
   let minY: Int
@@ -41,9 +41,9 @@ extension MKMapView {
     }
   }
 
-  var tileBoundingBox: MapTileBoundingBox {
+  var tile: MapTile {
     let regionRect = visibleMapRect
-    return MapTileBoundingBox(
+    return MapTile(
       minX: scaledIntCoordinate(from: regionRect.minX),
       maxX: scaledIntCoordinate(from: regionRect.maxX),
       minY: scaledIntCoordinate(from: regionRect.minY),
