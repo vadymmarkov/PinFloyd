@@ -34,7 +34,7 @@ extension MKMapView {
       return 64
     case 16...18:
       return 32
-    case 18..<Int.max:
+    case 19..<Int.max:
       return 16
     default:
       return 88
