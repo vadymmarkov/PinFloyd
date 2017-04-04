@@ -40,13 +40,13 @@ public final class ClusteringManager {
   // MARK: - Clustering
 
   private func clusteredAnnotations(onMapView mapView: MKMapView) -> [MKAnnotation] {
-    let boundingBox = mapView.tileBoundingBox
+    let tile = mapView.tile
     let scaleFactor = mapView.scaleFactor
     var clusteredAnnotations = [MKAnnotation]()
 
     // Iterate through the bounding box points
-    for x in boundingBox.minX...boundingBox.maxX {
-      for y in boundingBox.minY...boundingBox.maxY {
+    for x in tile.minX...tile.maxX {
+      for y in tile.minY...tile.maxY {
         // Create map rect considering scale factor
         let mapRect = MKMapRect(
           origin: MKMapPoint(x: Double(x) / scaleFactor, y: Double(y) / scaleFactor),
