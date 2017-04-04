@@ -11,6 +11,8 @@ public final class ClusteringManager {
     add(annotations: annotations)
   }
 
+  // MARK: - Annotations
+
   public func add(annotations: [MKAnnotation]) {
     for annotation in annotations {
       rootNode.add(annotation: annotation)
@@ -35,6 +37,25 @@ public final class ClusteringManager {
       let annotations = strongSelf.clusteredAnnotations(onMapView: mapView)
       strongSelf.reload(annotations: annotations, onMapView: mapView, completion: completion)
     }
+  }
+
+  func clusterAnnotationView(for annotation: MKAnnotation, mapView: MKMapView) -> MKAnnotationView? {
+    guard let annotation = annotation as? ClusterAnnotation else {
+      return nil
+    }
+
+    let id = ClusterAnnotationView.identifier
+    var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
+
+    if clusterView == nil {
+      clusterView = ClusterAnnotationView(annotation: annotation, reuseIdentifier: id)
+    } else {
+      clusterView?.annotation = annotation
+    }
+    
+    clusterView?.canShowCallout = false
+
+    return clusterView
   }
 
   // MARK: - Clustering
