@@ -58,6 +58,11 @@ public final class ClusteringManager {
     return clusterView
   }
 
+  public func animate(annotationViews: [MKAnnotationView], animation: AnnotationAnimation = .bounce) {
+    let animator = animation.createAnimator()
+    animator.animate(views: annotationViews)
+  }
+
   private func clusterAnnotation(for coordinate: CLLocationCoordinate2D,
                                  annotationsCount: Int,
                                  visibleAnnotations: [MKAnnotation]) -> MKAnnotation {
