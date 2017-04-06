@@ -5,6 +5,7 @@ public final class ClusteringManager {
 
   public typealias Completion = (MKMapView) -> Void
 
+  public var filterAnnotations: (MKAnnotation) -> Bool = { _ in return true }
   private let rootNode: QuadTreeNode = QuadTreeNode(rect: MKMapRectWorld, capacity: 8)
 
   public init(annotations: [MKAnnotation] = []) {
@@ -52,7 +53,7 @@ public final class ClusteringManager {
     } else {
       clusterView?.annotation = annotation
     }
-    
+
     clusterView?.canShowCallout = false
 
     return clusterView
@@ -135,7 +136,8 @@ public final class ClusteringManager {
   // Add only the annotations we need in the current region
   // https://robots.thoughtbot.com/how-to-handle-large-amounts-of-data-on-maps#adding-only-the-annotations-we-need
   private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView, completion: Completion?) {
-    let currentSet = NSMutableSet(array: mapView.annotations)
+    let mapAnnotations = mapView.annotations.filter(filterAnnotations)
+    let currentSet = NSMutableSet(array: mapAnnotations)
     let newSet = NSSet(array: annotations) as Set<NSObject>
 
     // Remove user location
@@ -162,7 +164,7 @@ public final class ClusteringManager {
       if let removeAnnotations = setToRemove.allObjects as? [MKAnnotation] {
         mapView.removeAnnotations(removeAnnotations)
       }
-
+      
       completion?(mapView)
     }
   }
