@@ -9,12 +9,50 @@
 
 ## Description
 
-**PinFloyd** description.
+MapKit annotations clustering for iOS.
 
 ## Usage
-
+Create an instance of `ClusteringManager`:
 ```swift
-<API>
+let clusteringManager = ClusteringManager()
+```
+
+Add annotations:
+```swift
+clusteringManager.add(annotations: annotations)
+```
+
+Replace annotations:
+```swift
+clusteringManager.replace(annotations: annotations)
+```
+
+Render annotations on region change:
+```swift
+// MKMapViewDelegate
+func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+  clusteringManager.renderAnnotations(onMapView: mapView)
+}
+```
+
+Reuse annotation view: 
+```swift
+func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+  switch annotation {
+  case let annotation as ClusterAnnotation:
+    let id = ClusterAnnotationView.identifier
+
+    var clusterView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
+    if clusterView == nil {
+      clusterView = ClusterAnnotationView(annotation: annotation, reuseIdentifier: id)
+    } else {
+      clusterView?.annotation = annotation
+    }
+
+    return clusterView
+  default:
+    // return annotation view
+}
 ```
 
 ## Installation
