@@ -7,6 +7,7 @@ public final class ClusteringManager {
 
   public var filterAnnotations: (MKAnnotation) -> Bool = { _ in return true }
   private let rootNode: QuadTreeNode = QuadTreeNode(rect: MKMapRectWorld, capacity: 8)
+  private let lock = NSRecursiveLock()
 
   public init(annotations: [MKAnnotation] = []) {
     add(annotations: annotations)
@@ -15,9 +16,13 @@ public final class ClusteringManager {
   // MARK: - Annotations
 
   public func add(annotations: [MKAnnotation]) {
+    lock.lock()
+
     for annotation in annotations {
       rootNode.add(annotation: annotation)
     }
+
+    lock.unlock()
   }
 
   public func replace(annotations: [MKAnnotation]) {
@@ -30,8 +35,8 @@ public final class ClusteringManager {
   }
 
   public func renderAnnotations(onMapView mapView: MKMapView, completion: Completion? = nil) {
-    DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-      guard let strongSelf = self else {
+    DispatchQueue.global(qos: .userInitiated).async { [weak self, weak mapView] in
+      guard let strongSelf = self, let mapView = mapView else {
         return
       }
 
@@ -64,31 +69,18 @@ public final class ClusteringManager {
     animator.animate(views: annotationViews)
   }
 
-  private func clusterAnnotation(for coordinate: CLLocationCoordinate2D,
-                                 annotationsCount: Int,
-                                 visibleAnnotations: [MKAnnotation]) -> MKAnnotation {
-    let filter: (MKAnnotation) -> Bool = { annotation in
-      guard let annotation = annotation as? ClusterAnnotation else {
-        return false
-      }
-      return annotation.annotationsCount == annotationsCount && annotation.coordinate == coordinate
-    }
-
-    guard let clusterAnnotation = visibleAnnotations.first(where: filter) else {
-      return ClusterAnnotation(coordinate: coordinate, annotationsCount: annotationsCount)
-    }
-
-    return clusterAnnotation
-  }
-
-
   // MARK: - Clustering
 
   private func clusteredAnnotations(onMapView mapView: MKMapView) -> [MKAnnotation] {
+    guard !mapView.zoomScale.isInfinite else {
+      return []
+    }
+
     let tile = mapView.tile
     let scaleFactor = mapView.scaleFactor
-    let visibleAnnotations = mapView.annotations
     var clusteredAnnotations = [MKAnnotation]()
+
+    lock.lock()
 
     // Iterate through the bounding box points
     for x in tile.minX...tile.maxX {
@@ -122,13 +114,16 @@ public final class ClusteringManager {
           clusterMapPoint.x /= Double(count)
           clusterMapPoint.y /= Double(count)
 
-          clusteredAnnotations.append(clusterAnnotation(
-            for: clusterMapPoint.coordinate,
-            annotationsCount: annotations.count, visibleAnnotations: visibleAnnotations
-          ))
+          let annotation = ClusterAnnotation(
+            coordinate: clusterMapPoint.coordinate,
+            annotationsCount: annotations.count
+          )
+          clusteredAnnotations.append(annotation)
         }
       }
     }
+
+    lock.unlock()
 
     return clusteredAnnotations
   }
@@ -156,7 +151,11 @@ public final class ClusteringManager {
     setToRemove.minus(newSet)
 
     // Reload annotations
-    DispatchQueue.main.async {
+    DispatchQueue.main.async { [weak mapView] in
+      guard let mapView = mapView else {
+        return
+      }
+
       if let toAddAnnotations = setToAdd.allObjects as? [MKAnnotation] {
         mapView.addAnnotations(toAddAnnotations)
       }

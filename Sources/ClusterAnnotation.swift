@@ -12,4 +12,15 @@ public class ClusterAnnotation: NSObject, MKAnnotation {
     self.coordinate = coordinate
     self.annotationsCount = annotationsCount
   }
+
+  public override func isEqual(_ object: Any?) -> Bool {
+    if let rhs = object as? ClusterAnnotation {
+      return annotationsCount == rhs.annotationsCount && coordinate == rhs.coordinate
+    }
+    return super.isEqual(object)
+  }
+
+  public override var hash: Int {
+    return annotationsCount.hashValue ^ coordinate.latitude.hashValue ^ coordinate.longitude.hashValue
+  }
 }
