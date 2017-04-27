@@ -7,6 +7,7 @@ public final class ClusteringManager {
 
   public var filterAnnotations: (MKAnnotation) -> Bool = { _ in return true }
   private let rootNode: QuadTreeNode = QuadTreeNode(rect: MKMapRectWorld, capacity: 8)
+  private let lock = NSRecursiveLock()
 
   public init(annotations: [MKAnnotation] = []) {
     add(annotations: annotations)
@@ -64,24 +65,6 @@ public final class ClusteringManager {
     animator.animate(views: annotationViews)
   }
 
-  private func clusterAnnotation(for coordinate: CLLocationCoordinate2D,
-                                 annotationsCount: Int,
-                                 visibleAnnotations: [MKAnnotation]) -> MKAnnotation {
-    let filter: (MKAnnotation) -> Bool = { annotation in
-      guard let annotation = annotation as? ClusterAnnotation else {
-        return false
-      }
-      return annotation.annotationsCount == annotationsCount && annotation.coordinate == coordinate
-    }
-
-    guard let clusterAnnotation = visibleAnnotations.first(where: filter) else {
-      return ClusterAnnotation(coordinate: coordinate, annotationsCount: annotationsCount)
-    }
-
-    return clusterAnnotation
-  }
-
-
   // MARK: - Clustering
 
   private func clusteredAnnotations(onMapView mapView: MKMapView) -> [MKAnnotation] {
@@ -91,7 +74,6 @@ public final class ClusteringManager {
 
     let tile = mapView.tile
     let scaleFactor = mapView.scaleFactor
-    let visibleAnnotations = mapView.annotations
     var clusteredAnnotations = [MKAnnotation]()
 
     // Iterate through the bounding box points
@@ -126,10 +108,11 @@ public final class ClusteringManager {
           clusterMapPoint.x /= Double(count)
           clusterMapPoint.y /= Double(count)
 
-          clusteredAnnotations.append(clusterAnnotation(
-            for: clusterMapPoint.coordinate,
-            annotationsCount: annotations.count, visibleAnnotations: visibleAnnotations
-          ))
+          let annotation = ClusterAnnotation(
+            coordinate: clusterMapPoint.coordinate,
+            annotationsCount: annotations.count
+          )
+          clusteredAnnotations.append(annotation)
         }
       }
     }
