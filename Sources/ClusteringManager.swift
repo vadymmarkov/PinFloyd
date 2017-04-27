@@ -16,9 +16,13 @@ public final class ClusteringManager {
   // MARK: - Annotations
 
   public func add(annotations: [MKAnnotation]) {
+    lock.lock()
+
     for annotation in annotations {
       rootNode.add(annotation: annotation)
     }
+
+    lock.unlock()
   }
 
   public func replace(annotations: [MKAnnotation]) {
@@ -76,6 +80,8 @@ public final class ClusteringManager {
     let scaleFactor = mapView.scaleFactor
     var clusteredAnnotations = [MKAnnotation]()
 
+    lock.lock()
+
     // Iterate through the bounding box points
     for x in tile.minX...tile.maxX {
       for y in tile.minY...tile.maxY {
@@ -116,6 +122,8 @@ public final class ClusteringManager {
         }
       }
     }
+
+    lock.unlock()
 
     return clusteredAnnotations
   }
