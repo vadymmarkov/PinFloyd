@@ -12,9 +12,6 @@ class MKMapViewTests: XCTestCase {
   }
 
   func testZoomLevel() {
-    // Default zoom level
-    XCTAssertEqual(mapView.zoomLevel, 3)
-
     // Zoom in
     let coordinate = CLLocationCoordinate2D(latitude: 59.932646, longitude: 10.756316)
     let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
