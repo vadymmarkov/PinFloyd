@@ -35,12 +35,19 @@ public final class ClusteringManager {
   }
 
   public func renderAnnotations(onMapView mapView: MKMapView, completion: Completion? = nil) {
+    guard !mapView.zoomScale.isInfinite else {
+      return
+    }
+
+    let tile = mapView.tile
+    let scaleFactor = mapView.scaleFactor
+
     DispatchQueue.global(qos: .userInitiated).async { [weak self, weak mapView] in
       guard let strongSelf = self, let mapView = mapView else {
         return
       }
 
-      let annotations = strongSelf.clusteredAnnotations(onMapView: mapView)
+      let annotations = strongSelf.clusteredAnnotations(tile: tile, scaleFactor: scaleFactor)
       strongSelf.reload(annotations: annotations, onMapView: mapView, completion: completion)
     }
   }
@@ -71,13 +78,7 @@ public final class ClusteringManager {
 
   // MARK: - Clustering
 
-  private func clusteredAnnotations(onMapView mapView: MKMapView) -> [MKAnnotation] {
-    guard !mapView.zoomScale.isInfinite else {
-      return []
-    }
-
-    let tile = mapView.tile
-    let scaleFactor = mapView.scaleFactor
+  private func clusteredAnnotations(tile: MapTile, scaleFactor: Double) -> [MKAnnotation] {
     var clusteredAnnotations = [MKAnnotation]()
 
     lock.lock()
@@ -163,8 +164,9 @@ public final class ClusteringManager {
       if let removeAnnotations = setToRemove.allObjects as? [MKAnnotation] {
         mapView.removeAnnotations(removeAnnotations)
       }
-      
+
       completion?(mapView)
     }
   }
 }
+
