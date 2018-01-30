@@ -5,8 +5,13 @@ public final class ClusteringManager {
 
   public typealias Completion = (MKMapView) -> Void
 
+  /// Return false for those annotations you don't want to be clustered
   public var filterAnnotations: (MKAnnotation) -> Bool = { _ in return true }
   private let rootNode: QuadTreeNode = QuadTreeNode(rect: MKMapRectWorld, capacity: 8)
+
+  /// These annotations are not being clustered
+  /// They are rendered as is
+  private var unclusteredAnnotations = [MKAnnotation]()
   private let lock = NSRecursiveLock()
 
   public init(annotations: [MKAnnotation] = []) {
@@ -27,11 +32,16 @@ public final class ClusteringManager {
 
   public func replace(annotations: [MKAnnotation]) {
     removeAll()
-    add(annotations: annotations)
+
+    unclusteredAnnotations.append(
+      contentsOf: annotations.filter({ !filterAnnotations($0) })
+    )
+    add(annotations: annotations.filter(filterAnnotations))
   }
 
   public func removeAll() {
     rootNode.removeAll()
+    unclusteredAnnotations.removeAll()
   }
 
   public func renderAnnotations(onMapView mapView: MKMapView, completion: Completion? = nil) {
@@ -47,8 +57,16 @@ public final class ClusteringManager {
         return
       }
 
-      let annotations = strongSelf.clusteredAnnotations(tile: tile, scaleFactor: scaleFactor)
-      strongSelf.reload(annotations: annotations, onMapView: mapView, completion: completion)
+      let annotations = strongSelf.clusteredAnnotations(
+        tile: tile,
+        scaleFactor: scaleFactor
+      )
+
+      strongSelf.reload(
+        annotations: annotations + strongSelf.unclusteredAnnotations,
+        onMapView: mapView,
+        completion: completion
+      )
     }
   }
 
@@ -132,8 +150,7 @@ public final class ClusteringManager {
   // Add only the annotations we need in the current region
   // https://robots.thoughtbot.com/how-to-handle-large-amounts-of-data-on-maps#adding-only-the-annotations-we-need
   private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView, completion: Completion?) {
-    let mapAnnotations = mapView.annotations.filter(filterAnnotations)
-    let currentSet = NSMutableSet(array: mapAnnotations)
+    let currentSet = NSMutableSet(array: mapView.annotations)
     let newSet = NSSet(array: annotations) as Set<NSObject>
 
     // Remove user location
