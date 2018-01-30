@@ -57,8 +57,16 @@ public final class ClusteringManager {
         return
       }
 
-      let annotations = strongSelf.clusteredAnnotations(tile: tile, scaleFactor: scaleFactor)
-      strongSelf.reload(annotations: annotations, onMapView: mapView, completion: completion)
+      let annotations = strongSelf.clusteredAnnotations(
+        tile: tile,
+        scaleFactor: scaleFactor
+      )
+
+      strongSelf.reload(
+        annotations: annotations + strongSelf.unclusteredAnnotations,
+        onMapView: mapView,
+        completion: completion
+      )
     }
   }
 
