@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "PinFloyd"
   s.summary          = "MapKit annotations clustering for iOS."
-  s.version          = "1.0.1"
+  s.version          = "1.0.2"
   s.homepage         = "https://github.com/hyperoslo/PinFloyd"
   s.license          = 'MIT'
   s.author           = { "Hyper Interaktiv AS" => "ios@hyper.no" }
