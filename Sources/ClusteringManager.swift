@@ -23,7 +23,10 @@ public final class ClusteringManager {
   public func add(annotations: [MKAnnotation]) {
     lock.lock()
 
-    for annotation in annotations {
+    let tuple = slice(annotations: annotations)
+    unclusteredAnnotations.append(contentsOf: tuple.unclustered)
+
+    for annotation in tuple.toBeClustered {
       rootNode.add(annotation: annotation)
     }
 
@@ -33,10 +36,9 @@ public final class ClusteringManager {
   public func replace(annotations: [MKAnnotation]) {
     removeAll()
 
-    unclusteredAnnotations.append(
-      contentsOf: annotations.filter({ !filterAnnotations($0) })
-    )
-    add(annotations: annotations.filter(filterAnnotations))
+    let tuple = slice(annotations: annotations)
+    unclusteredAnnotations.append(contentsOf: tuple.unclustered)
+    add(annotations: tuple.toBeClustered)
   }
 
   public func removeAll() {
@@ -184,6 +186,13 @@ public final class ClusteringManager {
 
       completion?(mapView)
     }
+  }
+
+  private func slice(annotations: [MKAnnotation])
+    -> (toBeClustered: [MKAnnotation], unclustered: [MKAnnotation]) {
+      let toBeClustered = annotations.filter(filterAnnotations)
+      let unclusterd = annotations.filter({ !filterAnnotations($0) })
+      return (toBeClustered, unclusterd)
   }
 }
 
