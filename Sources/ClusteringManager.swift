@@ -23,7 +23,10 @@ public final class ClusteringManager {
   public func add(annotations: [MKAnnotation]) {
     lock.lock()
 
-    for annotation in annotations {
+    let tuple = slice(annotations: annotations)
+    unclusteredAnnotations.append(contentsOf: tuple.unclustered)
+
+    for annotation in tuple.toBeClustered {
       rootNode.add(annotation: annotation)
     }
 
@@ -33,10 +36,9 @@ public final class ClusteringManager {
   public func replace(annotations: [MKAnnotation]) {
     removeAll()
 
-    unclusteredAnnotations.append(
-      contentsOf: annotations.filter({ !filterAnnotations($0) })
-    )
-    add(annotations: annotations.filter(filterAnnotations))
+    let tuple = slice(annotations: annotations)
+    unclusteredAnnotations.append(contentsOf: tuple.unclustered)
+    add(annotations: tuple.toBeClustered)
   }
 
   public func removeAll() {
@@ -150,7 +152,7 @@ public final class ClusteringManager {
   // Add only the annotations we need in the current region
   // https://robots.thoughtbot.com/how-to-handle-large-amounts-of-data-on-maps#adding-only-the-annotations-we-need
   private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView, completion: Completion?) {
-    let currentSet = NSMutableSet(array: mapView.annotations)
+    let currentSet = NSMutableSet(array: mapView.annotations.filter(filterAnnotations))
     let newSet = NSSet(array: annotations) as Set<NSObject>
 
     // Remove user location
@@ -184,6 +186,13 @@ public final class ClusteringManager {
 
       completion?(mapView)
     }
+  }
+
+  private func slice(annotations: [MKAnnotation])
+    -> (toBeClustered: [MKAnnotation], unclustered: [MKAnnotation]) {
+      let toBeClustered = annotations.filter(filterAnnotations)
+      let unclusterd = annotations.filter({ !filterAnnotations($0) })
+      return (toBeClustered, unclusterd)
   }
 }
 
