@@ -152,7 +152,7 @@ public final class ClusteringManager {
   // Add only the annotations we need in the current region
   // https://robots.thoughtbot.com/how-to-handle-large-amounts-of-data-on-maps#adding-only-the-annotations-we-need
   private func reload(annotations: [MKAnnotation], onMapView mapView: MKMapView, completion: Completion?) {
-    let currentSet = NSMutableSet(array: mapView.annotations)
+    let currentSet = NSMutableSet(array: mapView.annotations.filter(filterAnnotations))
     let newSet = NSSet(array: annotations) as Set<NSObject>
 
     // Remove user location
