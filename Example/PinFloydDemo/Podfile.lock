@@ -1,5 +1,5 @@
 PODS:
-  - PinFloyd (0.1.0)
+  - PinFloyd (1.0.4)
 
 DEPENDENCIES:
   - PinFloyd (from `../../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  PinFloyd: d5b8a5123602f25216b976b15fa2836f5ed96e16
+  PinFloyd: d8e195fa0464ab7880fa50da2e4bda8260dd6535
 
-PODFILE CHECKSUM: f1e6d1f8d1b7cb3bc6d70fea8aa25fb799b3e4ff
+PODFILE CHECKSUM: af9099564126b5ad24ef79e2f4437c9769ddfa26
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.5.3

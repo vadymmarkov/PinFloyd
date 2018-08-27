@@ -1,15 +1,17 @@
 Pod::Spec.new do |s|
   s.name             = "PinFloyd"
   s.summary          = "MapKit annotations clustering for iOS."
-  s.version          = "1.0.3"
-  s.homepage         = "https://github.com/hyperoslo/PinFloyd"
+  s.version          = "1.0.4"
+  s.homepage         = "https://github.com/vadymmarkov/PinFloyd"
   s.license          = 'MIT'
-  s.author           = { "Hyper Interaktiv AS" => "ios@hyper.no" }
+  s.author           = {
+    "Vadym Markov" => "markov.vadym@gmail.com"
+  }
   s.source           = {
-    :git => "https://github.com/hyperoslo/PinFloyd.git",
+    :git => "https://github.com/vadymmarkov/PinFloyd.git",
     :tag => s.version.to_s
   }
-  s.social_media_url = 'https://twitter.com/hyperoslo'
+  s.social_media_url = 'https://twitter.com/vadymmarkov'
 
   s.ios.deployment_target = '9.0'
   s.tvos.deployment_target = '9.2'
