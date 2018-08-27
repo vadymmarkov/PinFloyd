@@ -1,6 +1,6 @@
 # PinFloyd
 
-[![CI Status](http://img.shields.io/travis/hyperoslo/PinFloyd.svg?style=flat)](https://travis-ci.org/hyperoslo/PinFloyd)
+[![CI Status](http://img.shields.io/travis/vadymmarkov/PinFloyd.svg?style=flat)](https://travis-ci.org/vadymmarkov/PinFloyd)
 [![Version](https://img.shields.io/cocoapods/v/PinFloyd.svg?style=flat)](http://cocoadocs.org/docsets/PinFloyd)
 [![Carthage Compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/PinFloyd.svg?style=flat)](http://cocoadocs.org/docsets/PinFloyd)
@@ -35,7 +35,7 @@ func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
 }
 ```
 
-Reuse annotation view: 
+Reuse annotation view:
 ```swift
 func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
   switch annotation {
@@ -68,19 +68,24 @@ pod 'PinFloyd'
 To install just write into your Cartfile:
 
 ```ruby
-github "hyperoslo/PinFloyd"
+github "vadymmarkov/PinFloyd"
 ```
 
 **PinFloyd** can also be installed manually. Just download and drop `Sources` folders in your project.
 
 ## Author
 
-Hyper Interaktiv AS, ios@hyper.no
+Vadym Markov, markov.vadym@gmail.com
+
+## Credits
+
+This library was originally done at [Hyper](http://hyper.no), a digital
+communications agency with a passion for [good code](https://github.com/hyperoslo) and delightful user experiences.
 
 ## Contributing
 
-We would love you to contribute to **PinFloyd**, check the [CONTRIBUTING](https://github.com/hyperoslo/PinFloyd/blob/master/CONTRIBUTING.md) file for more info.
+Check the [CONTRIBUTING](https://github.com/vadymmarkov/RetroProgress/blob/master/CONTRIBUTING.md) file for more info.
 
 ## License
 
-**PinFloyd** is available under the MIT license. See the [LICENSE](https://github.com/hyperoslo/PinFloyd/blob/master/LICENSE.md) file for more info.
+**PinFloyd** is available under the MIT license. See the [LICENSE](https://github.com/vadymmarkov/PinFloyd/blob/master/LICENSE.md) file for more info.
