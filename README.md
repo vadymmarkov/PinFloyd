@@ -84,7 +84,7 @@ communications agency with a passion for [good code](https://github.com/hyperosl
 
 ## Contributing
 
-Check the [CONTRIBUTING](https://github.com/vadymmarkov/RetroProgress/blob/master/CONTRIBUTING.md) file for more info.
+Check the [CONTRIBUTING](https://github.com/vadymmarkov/PinFloyd/blob/master/CONTRIBUTING.md) file for more info.
 
 ## License
 
